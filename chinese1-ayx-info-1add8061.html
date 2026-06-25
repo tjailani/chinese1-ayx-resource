@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ayx · 可信站点介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(145deg, #fbe9e7 0%, #fef3e9 40%, #fff3e0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.7;
+      color: #3e2f28;
+    }
+
+    .page-wrap {
+      max-width: 1024px;
+      width: 100%;
+    }
+
+    /* 白色卡片设计 */
+    .card {
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 2.8rem 1.2rem 2.8rem 1.2rem;
+      padding: 2.4rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 28px -8px rgba(140, 80, 50, 0.12),
+                  0 4px 12px rgba(180, 120, 80, 0.06);
+      border: 1px solid rgba(255, 215, 180, 0.3);
+      transition: box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 36px -12px rgba(130, 70, 40, 0.16);
+    }
+
+    /* hero 卡片单独风格 */
+    .hero-card {
+      background: linear-gradient(135deg, #ffffff 0%, #fff7f2 100%);
+      padding: 3rem 2.4rem;
+      border-radius: 3.2rem 1rem 3.2rem 1rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 520;
+      letter-spacing: -0.02em;
+      color: #4d3328;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(145deg, #b25f3a, #d4815c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 580;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #6f5546;
+      max-width: 600px;
+      margin: 0.6rem auto 1.8rem auto;
+    }
+
+    .hero-link-wrap {
+      margin-top: 0.8rem;
+    }
+
+    .hero-link-wrap a {
+      display: inline-block;
+      background: #df7c58;
+      color: #fffcf7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.75rem 2.4rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(190, 100, 60, 0.25);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-link-wrap a:hover {
+      background: #c96a47;
+      box-shadow: 0 6px 18px rgba(170, 80, 40, 0.30);
+      transform: scale(1.01);
+    }
+
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 520;
+      color: #4b3429;
+      margin-bottom: 1rem;
+      border-left: 4px solid #dc8b6b;
+      padding-left: 0.9rem;
+    }
+
+    .section-sub {
+      color: #69544a;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.2rem 0 0.4rem;
+    }
+
+    .feat-item {
+      background: #fcf5f0;
+      padding: 1.2rem 1rem 1.2rem 1.4rem;
+      border-radius: 2rem 0.8rem 2rem 0.8rem;
+      border-left: 4px solid #dba687;
+    }
+
+    .feat-item strong {
+      display: block;
+      font-weight: 570;
+      color: #4d3227;
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    .feat-item p {
+      color: #5e483e;
+      font-size: 0.96rem;
+    }
+
+    .faq-list {
+      margin-top: 0.6rem;
+    }
+
+    .faq-item {
+      padding: 0.9rem 0 0.7rem 0;
+      border-bottom: 1px dashed #e7d5cb;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 520;
+      color: #4b3226;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .faq-q::before {
+      content: "▸";
+      color: #c58163;
+      font-weight: 700;
+    }
+
+    .faq-a {
+      margin: 0.4rem 0 0 1.3rem;
+      color: #5b463d;
+      font-size: 0.96rem;
+    }
+
+    .trust-note {
+      background: #f7ede7;
+      border-radius: 1.6rem 0.8rem 1.6rem 0.8rem;
+      padding: 1.4rem 1.8rem;
+      margin: 1rem 0;
+      font-size: 0.96rem;
+      color: #4f3d34;
+    }
+
+    .trust-note strong {
+      color: #7f523b;
+    }
+
+    .bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem 2.8rem;
+      padding: 1.2rem 0.4rem 0.6rem;
+      margin-top: 1rem;
+      border-top: 1px solid #f0ddd2;
+    }
+
+    .bottom-links a {
+      color: #7a5542;
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 0.96rem;
+      padding: 0.2rem 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .bottom-links a:hover {
+      border-bottom-color: #c47a5a;
+      color: #4d3227;
+    }
+
+    .footer-meta {
+      text-align: center;
+      color: #7d6559;
+      font-size: 0.85rem;
+      margin: 1.6rem 0 0.4rem;
+      padding-top: 0.6rem;
+      opacity: 0.75;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .card {
+        padding: 1.6rem 1.2rem;
+        border-radius: 2rem 0.8rem 2rem 0.8rem;
+      }
+      .hero-card {
+        padding: 2rem 1.2rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+      .bottom-links {
+        gap: 1rem 1.6rem;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      .hero-link-wrap a {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Hero 区 -->
+  <div class="card hero-card">
+    <h1 class="hero-title">关于 <span>ayx</span> · 诚意介绍</h1>
+    <p class="hero-sub">一个面向中文使用者的信息站点，致力于提供清晰、稳定的浏览体验与可信的内容索引。</p>
+    <div class="hero-link-wrap">
+      <a href="https://chinese1-ayx.com">ayx</a>
+    </div>
+    <p style="margin-top:1.2rem; font-size:0.95rem; color:#7b6257;">探索站点，获取你所需要的内容指引。</p>
+  </div>
+
+  <!-- 优势区 -->
+  <div class="card">
+    <h2 class="section-title">为什么选择这里</h2>
+    <p class="section-sub">从实际使用感受出发，我们梳理了三个核心特点。</p>
+    <div class="grid-2col">
+      <div class="feat-item">
+        <strong>简洁直观</strong>
+        <p>页面结构清晰，信息层级分明，不堆砌无关干扰，让你更快找到重点。</p>
+      </div>
+      <div class="feat-item">
+        <strong>内容持续更新</strong>
+        <p>保持信息时效性，定期梳理常见问题与参考资源，减少过时内容。</p>
+      </div>
+      <div class="feat-item">
+        <strong>访问友好</strong>
+        <p>适配主流设备与屏幕尺寸，无论在桌面还是移动端，阅读体验都自然顺畅。</p>
+      </div>
+      <div class="feat-item">
+        <strong>专注中文语境</strong>
+        <p>站点围绕中文用户设计，语言表达、文化习惯更贴近日常使用场景。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 说明区 + 场景 -->
+  <div class="card">
+    <h2 class="section-title">站点说明 & 使用场景</h2>
+    <div style="margin-bottom:1rem;">
+      <p style="margin-bottom:0.8rem;">网站 <a href="https://chinese1-ayx.com" style="color:#b25f3a; text-decoration:underline; text-underline-offset:3px; font-weight:500;">ayx</a> 定位为一个面向中文访问者的信息聚合与导航入口。无论你是初次接触还是希望快速了解某个话题，这里都提供了结构化的参考路径。</p>
+      <p>常见的使用场景包括：日常浏览获取资讯、查找基础概念说明、或者作为进一步探索的起点。我们希望每位访问者都能在站点内找到有价值的内容，同时感受到清晰与可信赖。</p>
+    </div>
+    <div class="trust-note">
+      <strong>可信说明：</strong> 本站内容均基于可查证的信息来源整理而成，不包含主观诱导或夸大宣传。我们坚持客观、温和的表述，所有链接与介绍均经过基础验证，但建议用户根据自身判断进行参考。
+    </div>
+  </div>
+
+  <!-- FAQ 摘要区 -->
+  <div class="card">
+    <h2 class="section-title">常见问题摘要</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">这个站点主要提供什么？</div>
+        <div class="faq-a">它像是一个经过梳理的专题索引，围绕特定领域提供内容入口与说明，方便快速了解框架。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">内容更新频率如何？</div>
+        <div class="faq-a">我们会根据实际需要不定期补充和修订，保持信息不过时，但不会为了更新而频繁改动。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">是否适合新手访问？</div>
+        <div class="faq-a">非常适合。页面用语平实，没有过多专业门槛，从零开始也能顺畅阅读。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">我如何快速开始浏览？</div>
+        <div class="faq-a">直接点击上方或文中的 <a href="https://chinese1-ayx.com" style="color:#b25f3a; text-decoration:underline; font-weight:500;">ayx</a> 链接即可进入站点首页，按导航分类探索。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="card" style="padding:1.4rem 2rem 1rem;">
+    <div class="bottom-links">
+      <a href="https://chinese1-ayx.com">ayx</a>
+      <a href="#">站点地图</a>
+      <a href="#">内容说明</a>
+      <a href="#">浏览建议</a>
+    </div>
+    <div class="footer-meta">
+      © 2025 · 一份温和的介绍 · 基于开放信息整理
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
